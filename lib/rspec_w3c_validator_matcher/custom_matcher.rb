@@ -1,7 +1,7 @@
 require 'w3c_validators'
 include W3CValidators
 
-RSpec::Matchers.define :not_valid_in_3wc_validators do | doctype=:html32, charset=:utf_8 |
+RSpec::Matchers.define :valid_in_3wc_validators do | doctype=:html32, charset=:utf_8 |
   match do |text|
     validator = MarkupValidator.new
     validator.set_doctype! doctype
@@ -28,6 +28,6 @@ RSpec::Matchers.define :not_valid_in_3wc_validators do | doctype=:html32, charse
     end
     File.delete file_path
 
-    results.errors.empty?
+    not results.errors.empty?
   end
 end
